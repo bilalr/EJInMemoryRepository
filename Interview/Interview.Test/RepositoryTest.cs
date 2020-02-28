@@ -11,36 +11,26 @@ namespace Interview.Test
         [Fact]
         public void GetAllStoreableRecordsFromRepository()
         {
+
+
            
-        
-
-        IList<IStoreable<int>> storeableList = new List<IStoreable<int>>()
-            {
-                new Storeable<int>{ Id = 1 },
-                new Storeable<int>{ Id = 2 },
-                new Storeable<int>{ Id = 3 },
-                new Storeable<int>{ Id = 4 },
-            };
-
             IRepository<IStoreable<int>, int> repository = new Repository<IStoreable<int>, int>();
             repository.Save(new Storeable<int> { Id = 1 });
             repository.Save(new Storeable<int> { Id = 2 });
-            repository.Save(new Storeable<int> { Id =3 });
+            repository.Save(new Storeable<int> { Id = 3 });
             repository.Save(new Storeable<int> { Id = 4 });
-                
 
-            Assert.Equal(storeableList, repository.GetAll());
 
-            
+            Assert.Collection(repository.GetAll(), item => item.Id = 1, item => item.Id = 2, item => item.Id = 3, item => item.Id = 4)
+;
+
 
         }
 
         [Fact]
         public void GetStoreableRecordFromRepositoryById()
         {
-
-
-         
+            
             IRepository<IStoreable<int>, int> repository = new Repository<IStoreable<int>, int>();
             repository.Save(new Storeable<int> { Id = 1 });
             repository.Save(new Storeable<int> { Id = 2 });
@@ -49,7 +39,7 @@ namespace Interview.Test
 
             IStoreable<int> expectedResult = new Storeable<int>() { Id = 2 };
 
-            Assert.Equal(expectedResult, repository.Get(2));
+            Assert.Equal(expectedResult.Id, repository.Get(2).Id);
 
 
 
@@ -57,9 +47,7 @@ namespace Interview.Test
         [Fact]
         public void DeleteStoreableRecordFromRepositoryById()
         {
-
-
-           
+            
 
             IRepository<IStoreable<int>, int> repository = new Repository<IStoreable<int>, int>();
             repository.Save(new Storeable<int> { Id = 1 });
