@@ -14,8 +14,10 @@ namespace Interview.Test
         [Fact]
         public void GetAllStoreableRecordsFromRepository()
         {
-            
-            IRepository<IStoreable<int>, int> repository =  new MemoryRepository<IStoreable<int>, int>();
+
+        
+            IRepository<IStoreable<int>, int> repository = MemoryRepositoryFactory<IStoreable<int>, int>.Create<IStoreable<int>, int>();
+           
             repository.Save(new Storeable<int> { Id = 1 });
             repository.Save(new Storeable<int> { Id = 2 });
             repository.Save(new Storeable<int> { Id = 3 });
@@ -34,8 +36,9 @@ namespace Interview.Test
         [Fact]
         public void GetStoreableRecordFromRepositoryById()
         {
-            
-            IRepository<IStoreable<int>, int> repository = new MemoryRepository<IStoreable<int>, int>();
+
+            IRepository<IStoreable<int>, int> repository = MemoryRepositoryFactory<IStoreable<int>, int>.Create<IStoreable<int>, int>();
+
             repository.Save(new Storeable<int> { Id = 1 });
             repository.Save(new Storeable<int> { Id = 2 });
             repository.Save(new Storeable<int> { Id = 3 });
@@ -55,7 +58,8 @@ namespace Interview.Test
         public void DeleteStoreableRecordFromRepositoryById()
         {
             
-            IRepository<IStoreable<int>, int> repository = new MemoryRepository<IStoreable<int>, int>();
+            IRepository<IStoreable<int>, int> repository = MemoryRepositoryFactory<IStoreable<int>, int>.Create<IStoreable<int>, int>();
+
             repository.Save(new Storeable<int> { Id = 1 });
             repository.Save(new Storeable<int> { Id = 2 });
             repository.Save(new Storeable<int> { Id = 3 });
@@ -76,9 +80,9 @@ namespace Interview.Test
         {
             
             IStoreable<int> exptectedResult = new Storeable<int>() { Id = 1 };
-            
-            IRepository<IStoreable<int>, int> repository =  new MemoryRepository<IStoreable<int>, int>();
 
+            IRepository<IStoreable<int>, int> repository = MemoryRepositoryFactory<IStoreable<int>, int>.Create<IStoreable<int>, int>();
+            
             repository.Save(exptectedResult);
 
             Assert.Equal(exptectedResult,repository.Get(1));

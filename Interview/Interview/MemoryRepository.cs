@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+    
 
 namespace Interview
 {
+
+
     public class MemoryRepository<T, I> : IRepository<T, I> where T: IStoreable<I>  
     {
         public readonly List<T> StoreList;
